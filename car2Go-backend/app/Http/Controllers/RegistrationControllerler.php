@@ -46,10 +46,10 @@ class RegistrationControllerler extends Controller
             $user = Auth::user();
             if ($user->is_admin) {
                 session(['user_id' => $user->id]);
-                return response()->json(['success' => true, 'message' => 'Login successfully.', 'data' => ['user_id' => $user->id, 'role' => 'admin']]);
+                return response()->json(['success' => true, 'message' => 'Login successfully.',  'user_id' => $user->id, 'role' => 'admin']);
             } else {
                 session(['user_id' => $user->id]);
-                return response()->json(['success' => true, 'message' => 'Login successfully.', 'data' => ['user_id' => $user->id, 'role' => 'user']]);
+                return response()->json(['success' => true, 'message' => 'Login successfully.', 'user_id' => $user->id, 'role' => 'user']);
             }
         } else {
             // Authentication failed

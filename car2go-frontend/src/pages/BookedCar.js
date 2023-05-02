@@ -33,7 +33,7 @@ function Booked() {
   
 
   return (
-    <div>
+    <div className='booked-main'>
 
         <div className="product-list">
             {data.map((product) => (

@@ -30,28 +30,20 @@ Route::get('/users', function () {
     return response()->json($users);
 });
 
-// routes/api.php
-// routes/api.php
-
-//Route::middleware([\App\Http\Middleware\AuthCheck::class])->group(function () {
     Route::get('/cars', [CarController::class, 'index'])->name('car.index');
-//});
-
-//    Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     Route::POST('/cars/add', [CarController::class, 'store'])->name('car.store');
     Route::delete('/cars/{id}', [CarController::class, 'destroy'])->name('car.destroy');
     Route::get('/cars/{id}', [CarController::class, 'edit'])->name('car.edit');
     Route::POST('/cars/edit/{id}', [CarController::class, 'update'])->name('car.update');
 
-    Route::get('/rents', [RentController::class, 'index'])->name('rent.index')->middleware('AuthCheck');;
-Route::POST('/rents/add', [RentController::class, 'store'])->name('rent.store');
-Route::GET('/crondata', [RentController::class, 'getDataByUserId'])->name('rent.getDataByUserId');
-Route::POST('/remove/{id}', [RentController::class, 'destroy'])->name('rent.destroy');
+    Route::get('/rents', [RentController::class, 'index'])->name('rent.index');
+    Route::POST('/rents/add', [RentController::class, 'store'])->name('rent.store');
+    Route::GET('/crondata', [RentController::class, 'getDataByUserId'])->name('rent.getDataByUserId');
+    Route::POST('/remove/{id}', [RentController::class, 'destroy'])->name('rent.destroy');
 
-//});
-Route::POST('/register', [RegistrationControllerler::class, 'register']);
-Route::POST('/login', [RegistrationControllerler::class, 'login']);
-Route::POST('/logout', [RegistrationControllerler::class, 'logout']);
+    Route::POST('/register', [RegistrationControllerler::class, 'register']);
+    Route::POST('/login', [RegistrationControllerler::class, 'login']);
+    Route::POST('/logout', [RegistrationControllerler::class, 'logout']);
 
 
 
