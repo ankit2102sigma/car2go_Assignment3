@@ -9,8 +9,13 @@ function RentList () {
   const [cars, setCars] = useState([])
   const [selectedCar, setSelectedCar] = useState(null)
   const navigate = useNavigate()
+  const isUser = sessionStorage.getItem('user');
 
   useEffect(() => {
+    if(!isUser){
+      alert("Unauthorized User");
+      window.location.href = '/login';
+    }
     axios
       .get('http://localhost:8000/api/rents')  //data fetch from rent 
       .then(response => {
@@ -84,3 +89,4 @@ function RentList () {
 }
 
 export default RentList
+

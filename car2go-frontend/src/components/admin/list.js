@@ -8,13 +8,21 @@ import './css/Dashboard.css'
 function CarDashboard() {
 
   const [cars, setCars] = useState([]);
+  const isAdmin = sessionStorage.getItem('admin');
 
   useEffect(() => {
+    if(!isAdmin){
+      alert("Unauthorized User");
+      window.location.href = '/login';
+
+    }
+    
     async function fetchData() {
       const response = await axios.get(`http://localhost:8000/api/cars`);
       setCars(response.data);
     }
     fetchData();
+
   }, []);
 
   const handleDelete = (id) => {
@@ -98,3 +106,4 @@ function CarDashboard() {
 }
 
 export default CarDashboard;
+

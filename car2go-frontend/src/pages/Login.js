@@ -20,13 +20,17 @@ const Login = () => {
         password
       });
   
-      if (response.data.success === true && response.data.data === 'admin') {
-        localStorage.setItem('loggedInUser', JSON.stringify({isAdmin: true}));
+      if (response.data.success === true && response.data.role =='admin') {
+        console.log(response.data.role);
+        sessionStorage.setItem('admin', true );
         navigate('/admin');
+        localStorage.setItem('loggedInUser', JSON.stringify({isAdmin: true}));
       } else if (response.data.success === true) {
-        const userId = response.data.data.user_id;
+        // console.log(response.data.role);
+        const userId = response.data.user_id;
         alert("login Sucessfully")
         sessionStorage.setItem('userId', userId);
+        sessionStorage.setItem('user', true);
         localStorage.setItem('loggedInUser', JSON.stringify({isAdmin: false}));
         navigate('/home');
       }
@@ -78,3 +82,4 @@ const Login = () => {
 }
 
 export default Login
+

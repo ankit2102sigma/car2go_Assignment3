@@ -31,8 +31,13 @@ const ProductSlider = () => {
   }
 
   const [cars, setCars] = useState([])
+  const isUser = sessionStorage.getItem('user');
 
   useEffect(() => {
+    if(!isUser){
+      alert("Unauthorized User");
+      window.location.href = '/login';
+    }
     async function fetchData () {
       const response = await axios.get(`http://localhost:8000/api/cars`)
       setCars(response.data)
@@ -82,3 +87,4 @@ const ProductSlider = () => {
 }
 
 export default ProductSlider
+
