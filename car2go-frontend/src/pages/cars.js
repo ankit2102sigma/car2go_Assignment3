@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar.js'
+import Navbar from '../components/Navbar.js';
+import Footer from '../components/footer.js';
 import RentForm from '../components/form.js'
 import './css/cars.css'
 
@@ -84,6 +85,7 @@ function RentList () {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   )
 }

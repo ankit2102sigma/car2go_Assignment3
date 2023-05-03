@@ -36,7 +36,11 @@ function RentForm(props) {
       .post('http://localhost:8000/api/rents/add', formData)
       .then((response) => {
         console.log(response.data);
-        navigate('/cars');
+        if(response.data.success===true){
+          alert("Car Rented Sucessfully");
+          navigate('/booked');
+        }
+        
       })
       .catch((error) => {
         console.log(error);

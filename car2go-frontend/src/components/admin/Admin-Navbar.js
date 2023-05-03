@@ -36,13 +36,7 @@ const AdminNavbar = () => {
             <Link to="/add">Add Car</Link>
           </li>
           <li>
-            <Link to="/Product">Live Status</Link>
-          </li>
-          <li>
-            <Link to="/Aboutus">About us</Link>
-          </li>
-          <li>
-            <Link to="/Contactus">Contact us</Link>
+            <Link to="/live">Live Status</Link>
           </li>
           <li>
             <a href="#" onClick={handleLogout}>Logout</a>

@@ -7,6 +7,7 @@ import CarCard from "./pages/Home";
 import RentList from "./pages/cars";
 import Booked from "./pages/BookedCar";
 import RentForm from "./components/form";
+import LiveRented from "./pages/live";
 
 import AddCar from "./pages/AddCar";
 
@@ -30,6 +31,7 @@ export default function App() {
                 <Route path="*" element={<NoPage />} />
                 <Route path="/form/:id" element={<RentForm />} />
                 <Route path="/booked" element={<Booked />} />
+                <Route path="/live" element={<LiveRented />} />
                 {/*</Route>*/}
             </Routes>
         </BrowserRouter>

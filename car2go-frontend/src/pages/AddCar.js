@@ -96,7 +96,7 @@ function CarForm () {
   };
   
   return (
-    <div>
+    <div className='form'>
       <AdminNavbar />
     <Form
       onSubmit={handleSubmit}

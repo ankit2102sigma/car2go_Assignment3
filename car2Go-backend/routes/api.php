@@ -37,6 +37,7 @@ Route::get('/users', function () {
     Route::POST('/cars/edit/{id}', [CarController::class, 'update'])->name('car.update');
 
     Route::get('/rents', [RentController::class, 'index'])->name('rent.index');
+    Route::get('/live', [RentController::class, 'booked'])->name('rent.booked');
     Route::POST('/rents/add', [RentController::class, 'store'])->name('rent.store');
     Route::GET('/crondata', [RentController::class, 'getDataByUserId'])->name('rent.getDataByUserId');
     Route::POST('/remove/{id}', [RentController::class, 'destroy'])->name('rent.destroy');

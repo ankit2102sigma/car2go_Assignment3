@@ -29,9 +29,12 @@ class RentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function booked()
     {
-        //
+        // Get all available cars
+        $cars = Car::where('available', false)->get();
+
+        return response()->json($cars);
     }
 
     /**
@@ -70,7 +73,7 @@ class RentController extends Controller
         $car->available = false;
         $car->save();
 
-        return response()->json(['message' => 'Rental record created successfully.']);
+        return response()->json(['success' => true,'message' => 'Rental record created successfully.']);
     }
 
 
@@ -87,7 +90,8 @@ class RentController extends Controller
         $data = DB::table('rent')
             ->join('cars', 'rent.car_id', '=', 'cars.id')
             ->select('rent.*', 'cars.brand', 'cars.model', 'cars.year', 'cars.image')
-            ->where('rent.user_id', $userId)
+            ->where('rent.user_id', $userId  )
+            ->where('cars.available', false)
             ->get();
 
         return response()->json($data);

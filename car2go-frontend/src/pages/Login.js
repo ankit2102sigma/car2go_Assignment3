@@ -34,6 +34,9 @@ const Login = () => {
         localStorage.setItem('loggedInUser', JSON.stringify({isAdmin: false}));
         navigate('/home');
       }
+      else{
+        alert("Login Failed");
+      }
   
       console.log(response.data);
     } catch (error) {

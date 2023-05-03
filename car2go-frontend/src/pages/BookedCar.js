@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'
+import Navbar from '../components/Navbar.js';
+import './css/booked.css';
 function Booked() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate()
   const userId = sessionStorage.getItem('userId');
 
   useEffect(() => {
@@ -25,6 +28,9 @@ function Booked() {
         console.log(response.data);
         // Remove the car from the booked list
         setData(data.filter((car) => car.id !== carId));
+        alert("Your ride ended sucessfully")
+        navigate('/cars')
+        
       } catch (error) {
         console.log(error);
       }
@@ -33,19 +39,23 @@ function Booked() {
   
 
   return (
+    
     <div className='booked-main'>
-
-        <div className="product-list">
-            {data.map((product) => (
-                <div className="product" key={product.id}>
-                    <h3>{product.brand}{product.model}</h3>
-                    <img id="img"  src={`http://localhost:8000/storage/${product.image}`}  alt={product.name} />
-                    <p>{product.fuel}</p>
-                    <p>{product.price} Rs</p>
-                    <button onClick={() => handleEndRide(product.id)}>End Ride</button>
-                </div>
-            ))}
-        </div>
+      <Navbar />
+        {data.length === 0 && <h1 className='h1-booked'>No car is booked yet</h1>}
+        {data.length > 0 && (
+          <div className="product-list">
+              {data.map((product) => (
+                  <div className="product" key={product.id}>
+                      <h3>{product.brand}{product.model}</h3>
+                      <img id="img"  src={`http://localhost:8000/storage/${product.image}`}  alt={product.name} />
+                      <p>{product.fuel}</p>
+                      <p>{product.price} Rs</p>
+                      <button onClick={() => handleEndRide(product.id)}>End Ride</button>
+                  </div>
+              ))}
+          </div>
+        )}
     </div>
   );
 }

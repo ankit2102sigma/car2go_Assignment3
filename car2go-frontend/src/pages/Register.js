@@ -30,7 +30,7 @@ const Register = () => {
       if (response.data.success === true) {
         navigate('/login')
       } else {
-        alert(response.data)
+        alert("Registration Failed")
       }
     } catch (error) {
       if (error.response) {
