@@ -107,7 +107,7 @@ class CarController extends Controller
             'price' => 'required|numeric|min:0',
             'gearbox' => 'required|string',
             'fuel' => 'required|string',
-//            'image' => 'sometimes|required|image|max:2042', // maximum file size is 1MB
+            'image' => 'sometimes|required|image|max:2042', // maximum file size is 1MB
         ]);
 
         if ($validator->fails()) {
@@ -124,7 +124,7 @@ class CarController extends Controller
 
         if ($request->hasFile('image')) {
             if ($car->image) {
-                File::delete(public_path('storage/'.$car->image));
+                File::delete(public_path('storage'.$car->image));
             }
             $imageName = time() . '.' . $request->image->getClientOriginalExtension();
             $request->image->storeAs('public/images/cars', $imageName);

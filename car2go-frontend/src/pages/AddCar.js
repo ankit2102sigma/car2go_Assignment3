@@ -6,6 +6,8 @@ import AdminNavbar from '../components/admin/Admin-Navbar.js';
 // import { encryptId, decryptId }  from '../salting.js';
 import { API_URL } from '../utils/value.js'
 
+
+
 //carform used
 function CarForm () {
   const [brand, setBrand] = useState('')
@@ -96,6 +98,7 @@ function CarForm () {
   };
   
   return (
+    <div className='main-AddCar'>
     <div className='form'>
       <AdminNavbar />
     <Form
@@ -150,7 +153,8 @@ function CarForm () {
           value={gearbox}
           onChange={event => setGearbox(event.target.value)}
           className='form-control'
-        >
+        > 
+        <option value=''>Select Gearbox Type</option>
           <option value='Manual'>Manual</option>
           <option value='Automatic'>Automatic</option>
         </Form.Select>
@@ -191,6 +195,7 @@ function CarForm () {
         {isEdit ? 'Update' : 'Submit'}
       </Button>
     </Form>
+    </div>
     </div>
   )
 }
