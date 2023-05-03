@@ -47,7 +47,7 @@ function CarDashboard() {
   };
   
   const handleEdit = (id) => {
-    alert(id);
+    // alert(id);
     // const encryptedId = encryptId(id);
     // const saltedId = encryptId(id.toString());
 

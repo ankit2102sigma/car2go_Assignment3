@@ -50,6 +50,7 @@ function RentList () {
   }
 
   return (
+    
     <div className='main-cars'>
       <Navbar />
       {selectedCar && (
