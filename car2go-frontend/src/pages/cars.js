@@ -50,9 +50,10 @@ function RentList () {
   }
 
   return (
-    
+    <div className='container-cars'>
     <div className='main-cars'>
       <Navbar />
+      {cars.length === 0 && <h1 className='h1-booked'>No car Available</h1>}
       {selectedCar && (
         <RentForm
           car={selectedCar}
@@ -86,8 +87,11 @@ function RentList () {
           </div>
         ))}
       </div>
-      <Footer />
+
     </div>
+    <Footer />
+    </div>
+    
   )
 }
 

@@ -24,7 +24,7 @@ const Navbar = () => {
     <>
       <nav>
         <div className="logo-container">
-          <Link to="/">
+          <Link to="/home">
             <div className="logo">
               <a href="#">Car2Go</a>
             </div>

@@ -7,18 +7,23 @@
 }
 
 body{
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(75,14,154,1) 35%, rgba(0,212,255,1) 100%);
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(75,14,154,1) 35%, rgba(0,212,255,1) 100%); */
     font-family: 'Poppins', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+
 
 }
 
- .form form{
+.form form {
+    border: 1px solid black; /* Add border */
     border-radius: 20px;
     margin-top: 150px !important;
     width: 24% !important;
     background-color: white !important;
     padding: 50px;
-}
+  }
 
 .btn-primary{
     width: 100%;

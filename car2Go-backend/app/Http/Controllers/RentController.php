@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Rent;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -31,11 +32,18 @@ class RentController extends Controller
      */
     public function booked()
     {
-        // Get all available cars
-        $cars = Car::where('available', false)->get();
+        $cars = Car::join('rent', 'cars.id', '=', 'rent.car_id')
+            ->join('users', 'rent.user_id', '=', 'users.id')
+            ->where('cars.available', 0)
+            ->select('cars.*',
+                DB::raw('DATEDIFF(rent.return_date, rent.rent_date) AS rent_duration'),
+                'users.name as user_name', 'rent.return_date')
+            ->get();
 
         return response()->json($cars);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -130,10 +138,21 @@ class RentController extends Controller
     public function destroy($id)
     {
         $car = Car::find($id);
+
+        if (!$car) {
+            return response()->json(['success' => false, 'message' => 'Car not found.']);
+        }
+
+        // Set available to true
         $car->available = true;
         $car->save();
 
-        return response()->json(['success' => true, 'message' => 'Car availability updated.']);
+        // Delete entries from the "rent" table with the same car_id
+        Rent::where('car_id', $car->id)->delete();
+
+        return response()->json(['success' => true, 'message' => 'Rent entries deleted successfully.']);
     }
+
+
 
 }

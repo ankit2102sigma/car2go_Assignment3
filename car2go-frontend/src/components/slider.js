@@ -18,7 +18,7 @@ const ProductSlider = () => {
     },
     desktop: {
       breakpoint: { max: 1024, min: 800 },
-      items: 4
+      items: 5
     },
     tablet: {
       breakpoint: { max: 800, min: 464 },
@@ -51,7 +51,7 @@ const ProductSlider = () => {
 
   return (
     <div className='slider-main'>
-      <div className='mt-4'>
+      <div className='top-head-slide'>
         <h1>Rent Your Dream Car</h1>
       </div>
       <div className='main-slider'>
@@ -68,7 +68,7 @@ const ProductSlider = () => {
               </h2>
               <h5>{car.year}</h5>
               <p className='Fue'>{car.fuel}</p>
-              <p className='price'>Rs {car.Price}</p>
+              <p className='price'>Rs {car.price}</p>
               <p>
                 <button
                   onClick={() => {

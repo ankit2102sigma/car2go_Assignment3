@@ -3,12 +3,18 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar.js';
 import './css/booked.css';
+import Footer from '../components/footer.js';
 function Booked() {
   const [data, setData] = useState([]);
   const navigate = useNavigate()
   const userId = sessionStorage.getItem('userId');
+  const isUser = sessionStorage.getItem('user');
 
   useEffect(() => {
+    if(!isUser){
+      alert("Unauthorized User");
+      window.location.href = '/login';
+    }
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/crondata?userid=${userId}`);
@@ -39,7 +45,7 @@ function Booked() {
   
 
   return (
-    
+    <div className='container-booked'>
     <div className='booked-main'>
       <Navbar />
         {data.length === 0 && <h1 className='h1-booked'>No car is booked yet</h1>}
@@ -51,11 +57,14 @@ function Booked() {
                       <img id="img"  src={`http://localhost:8000/storage/${product.image}`}  alt={product.name} />
                       <p>{product.fuel}</p>
                       <p>{product.price} Rs</p>
-                      <button onClick={() => handleEndRide(product.id)}>End Ride</button>
+                      <button onClick={() => handleEndRide(product.car_id)}>End Ride</button>
                   </div>
               ))}
           </div>
         )}
+     
+    </div>
+    <Footer />
     </div>
   );
 }

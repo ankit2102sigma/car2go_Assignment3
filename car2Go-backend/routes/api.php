@@ -34,7 +34,7 @@ Route::get('/users', function () {
     Route::POST('/cars/add', [CarController::class, 'store'])->name('car.store');
     Route::delete('/cars/{id}', [CarController::class, 'destroy'])->name('car.destroy');
     Route::get('/cars/{id}', [CarController::class, 'edit'])->name('car.edit');
-    Route::POST('/cars/edit/{id}', [CarController::class, 'update'])->name('car.update');
+    Route::any('/cars/edit/{id}', [CarController::class, 'update'])->name('car.update');
 
     Route::get('/rents', [RentController::class, 'index'])->name('rent.index');
     Route::get('/live', [RentController::class, 'booked'])->name('rent.booked');

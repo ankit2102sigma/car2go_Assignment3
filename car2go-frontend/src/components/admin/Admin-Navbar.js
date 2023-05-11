@@ -24,7 +24,7 @@ const AdminNavbar = () => {
         <div className="logo-container">
           <Link to="/">
             <div className="logo">
-              <a href="#">Lapi-KArt</a>
+              <a href="#">Car2Go</a>
             </div>
           </Link>
         </div>

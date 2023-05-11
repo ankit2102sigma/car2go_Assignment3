@@ -66,3 +66,6 @@ h1 {
 .card h3 {
     overflow: hidden;
 }
+h1 {
+    margin: 20px 0px 20px 0px!important;
+  }

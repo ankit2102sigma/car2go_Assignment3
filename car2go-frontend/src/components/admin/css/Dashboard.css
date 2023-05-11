@@ -1,50 +1,139 @@
 .container-dash {
-    background: white;
-    font-family: 'Poppins', sans-serif;
-    width: 100%;
-    /* height: 100vh; */
-    margin: 0px;
-    padding: 0px
-    
-  }
+  background: white;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 .car-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-  }
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.car-table th,
+.car-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.car-table th {
+  background-color: #f2f2f2;
+}
+
+.car-table td:last-child {
+  text-align: center;
   
-  .car-table th, .car-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .car-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .car-table td:last-child {
-    text-align: center;
-  }
-  
-  .edit-button, .delete-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  
-  .delete-button {
-    background-color: #f44336;
+}
+
+.edit-button,
+.delete-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #f44336;
+}
+
+tbody img {
+  width: 20%;
+}
+
+@media (max-width: 768px) {
+  .car-table {
+    display: block;
+    overflow-x: auto;
   }
 
-  tbody img{
-    width: 20%;
+  .car-table thead,
+  .car-table tbody,
+  .car-table th,
+  .car-table td,
+  .car-table tr {
+    display: block;
   }
+
+  .car-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .car-table tr {
+    border: 1px solid #ddd;
+  }
+
+  .car-table td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .car-table td::before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  .car-table td:nth-of-type(1)::before {
+    content: 'Id';
+  }
+
+  .car-table td:nth-of-type(2)::before {
+    content: 'Brand';
+  }
+
+  .car-table td:nth-of-type(3)::before {
+    content: 'Model';
+  }
+
+  .car-table td:nth-of-type(4)::before {
+    content: 'Year';
+  }
+
+  .car-table td:nth-of-type(5)::before {
+    content: 'Price';
+  }
+
+  .car-table td:nth-of-type(6)::before {
+    content: 'Gearbox';
+  }
+
+  .car-table td:nth-of-type(7)::before {
+    content: 'Fuel';
+  }
+  .car-table td:nth-of-type(8)::before {
+    content: 'Image';
+  }
+  .car-table td:nth-of-type(9)::before {
+    content: 'Availability';
+  }
+  .car-table td:last-child {
+    border-bottom: solid;
+    margin: 20px;
+  }
+
+  tbody img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+  }
+}

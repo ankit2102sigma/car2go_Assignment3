@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import AdminNavbar from '../components/admin/Admin-Navbar.js';
 // import { encryptId, decryptId }  from '../salting.js';
+import Footer from '../components/footer.js';
 import { API_URL } from '../utils/value.js'
 
 
@@ -19,6 +20,7 @@ function CarForm () {
   const [selectedFile, setSelectedFile] = useState(null)
   const [image, setImage] = useState('')
   const [available, setAvailable] = useState(true)
+  const isUser = sessionStorage.getItem('user');
 
   const { id } = useParams()
   // const saltedId = saltAndHashId(id);
@@ -64,6 +66,22 @@ function CarForm () {
     event.preventDefault();
     console.log('image', image);
     console.log('Brand', brand);
+
+    const currentYear = new Date().getFullYear();
+    if (year <= 1990 || year > currentYear) {
+      alert('Invalid year. Year must be greater than 1990 and less than or equal to the current year.');
+      return;
+    }
+   if (price < 1 || price > 100000) {
+    alert('Invalid price. Price must be between 1 and 100,000.');
+    return;
+  }
+  if (!brand || !model || !year || !price || !gearbox || !fuel) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+    
   
     const carData = new FormData();
     carData.append('brand', brand);
@@ -92,14 +110,15 @@ function CarForm () {
       //   );
       // }
     } catch (error) {
-      console.log(error.response.data);
+      console.log("test", error.response.data);
       alert(`Error ${isEdit ? 'updating' : 'adding'} car`);
+    
     }
   };
   
   return (
     <div className='main-AddCar'>
-    <div className='form'>
+    <div className='form mb-5'>
       <AdminNavbar />
     <Form
       onSubmit={handleSubmit}
@@ -196,6 +215,7 @@ function CarForm () {
       </Button>
     </Form>
     </div>
+    <Footer />
     </div>
   )
 }

@@ -99,20 +99,35 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
         $car = Car::find($id);
-
         $validator = Validator::make($request->all(), [
             'brand' => 'required|string',
             'model' => 'required|string',
-            'year' => 'required|numeric|min:1900|max:'.date('Y'),
+            'year' => 'required|numeric|min:1900|max:' . date('Y'),
             'price' => 'required|numeric|min:0',
             'gearbox' => 'required|string',
             'fuel' => 'required|string',
-            'image' => 'sometimes|required|image|max:2042', // maximum file size is 1MB
+             // maximum file size is 1MB
+        ], [
+            'brand.required' => 'The brand field is required.',
+            'model.required' => 'The model field is required.',
+            'year.required' => 'The year field is required.',
+            'year.numeric' => 'The year must be a number.',
+            'year.min' => 'The year must be at least 1900.',
+            'year.max' => 'The year cannot be greater than ' . date('Y') . '.',
+            'price.required' => 'The price field is required.',
+            'price.numeric' => 'The price must be a number.',
+            'price.min' => 'The price must be at least 0.',
+            'gearbox.required' => 'The gearbox field is required.',
+            'fuel.required' => 'The fuel field is required.',
+            'image.image' => 'The image must be a valid image file.',
+            'image.max' => 'The image size cannot exceed 2042 kilobytes.',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
+
+
 
         $car->brand = $request->get('brand');
         $car->model = $request->get('model');

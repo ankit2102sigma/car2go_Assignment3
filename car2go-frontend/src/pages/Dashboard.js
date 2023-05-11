@@ -4,6 +4,7 @@ import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import AdminNavbar from '../components/admin/Admin-Navbar.js';
 import CarDashboard from '../components/admin/list.js';
+import Footer from '../components/footer.js';
 
 
 function Dashboard() {
@@ -15,6 +16,7 @@ function Dashboard() {
     <div>
       <AdminNavbar />
       <CarDashboard />
+      <Footer />
     
   
     

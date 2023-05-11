@@ -6,43 +6,64 @@ import './css/Registe.css'
 import { API_URL } from '../utils/value.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router-dom'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = async event => {
+    if (!email || !password) {
+      alert('Please enter all fields');
+      return;
+    }
+  
+    const emailValidation = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+    if (!emailValidation.test(email)) {
+      alert('Enter valid email');
+      return;
+    }
+  
+  
+  
     event.preventDefault();
     try {
       const response = await axios.post(`${API_URL}/login`, {
         email,
-        password
+        password,
       });
   
-      if (response.data.success === true && response.data.role =='admin') {
-        console.log(response.data.role);
-        sessionStorage.setItem('admin', true );
+      if (response.data.success === true && response.data.role === 'admin') {
+        sessionStorage.setItem('admin', true);
         navigate('/admin');
-        localStorage.setItem('loggedInUser', JSON.stringify({isAdmin: true}));
+        localStorage.setItem('loggedInUser', JSON.stringify({ isAdmin: true }));
       } else if (response.data.success === true) {
-        // console.log(response.data.role);
         const userId = response.data.user_id;
-        alert("login Sucessfully")
+        alert('Login successfully');
         sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('user', true);
-        localStorage.setItem('loggedInUser', JSON.stringify({isAdmin: false}));
+        localStorage.setItem('loggedInUser', JSON.stringify({ isAdmin: false }));
         navigate('/home');
       }
       else{
-        alert("Login Failed");
+        alert("Enter Valid Login credentials");
       }
-  
-      console.log(response.data);
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        alert('Invalid email or password');
+      } else {
+        alert('Login failed');
+      }
     }
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
+  
   
   
 
@@ -61,15 +82,24 @@ const Login = () => {
             onChange={event => setEmail(event.target.value)}
           />
         </div>
-        <div className='mb-3'>
-          <label className='form-label'>Password</label>
-          <input
-            type='password'
-            className='form-control'
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-          />
-        </div>
+  <div className='mb-3'>
+              <label className='form-label'>Password</label>
+              <div className='input-group'>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  className='form-control'
+                  value={password}
+                  onChange={event => setPassword(event.target.value)}
+                />
+                <button
+                  type='button'
+                  className='btn btn-outline-secondary'
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
         <div className='d-grid'>
           <button type='submit' className='btn btn-primary mt-5'>
             Login

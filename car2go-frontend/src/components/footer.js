@@ -1,44 +1,70 @@
 import React from 'react';
-import "./Css/Footer.css";
+import './Css/Footer.css';
 
-function Footer() {
-    return (
-        <div className="footer">
-            <div className="footer_logo">
-                <h1 id="logo-foot">Car2Go</h1>
+const Footer = () => {
+  return (
+    <footer className="section bg-footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3">
+            <div className="">
+              <h6 className="footer-heading text-uppercase text-white">Information</h6>
+              <ul className="list-unstyled footer-link mt-4">
+                <li><a href="">Pages</a></li>
+                <li><a href="">Our Team</a></li>
+                <li><a href="">Features</a></li>
+                <li><a href="">Pricing</a></li>
+              </ul>
             </div>
-            <div className="about">
-                <h3>ABOUT US</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis corrupti quam aliquid, maiores qui itaque quaerat suscipit sequi facilis impedit laborum? Maxime, adipisci? Blanditiis praesentium corrupti minima quidem repudiandae amet! Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sapiente vero rem, labore vel sequi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, similique.
-                </p>
-            </div>
-            <div className="rigth_footer">
-                <div className="navigation">
-                    <ul>
-                        <h2>Polices</h2>
-                        <li><a href="#">Refund and returns</a></li>
-                        <li><a href="#">policy shipping</a></li>
-                        <li><a href="#">Disclaimer Policy</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div className="navigation">
-                    <ul>
-                        <h2>Navigation</h2>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">site map</a></li>
-                        <li><a href="#">contact us</a></li>
-                        <li><a href="#">verify productsy</a></li>
-                    </ul>
-                </div>
-            </div>
+          </div>
 
-            <div className="copyright">
-                <p>Copyright @ 2022 Sigma Infosolution</p>
+          <div className="col-lg-3">
+            <div className="">
+              <h6 className="footer-heading text-uppercase text-white">Resources</h6>
+              <ul className="list-unstyled footer-link mt-4">
+                <li><a href="">Monitoring Grader</a></li>
+                <li><a href="">Video Tutorial</a></li>
+                <li><a href="">Terms &amp; Service</a></li>
+                <li><a href="">Zeeko API</a></li>
+              </ul>
             </div>
+          </div>
+
+          <div className="col-lg-2">
+            <div className="">
+              <h6 className="footer-heading text-uppercase text-white">Help</h6>
+              <ul className="list-unstyled footer-link mt-4">
+                <li><a href="">Sign Up</a></li>
+                <li><a href="">Login</a></li>
+                <li><a href="">Terms of Services</a></li>
+                <li><a href="">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-lg-4">
+            <div className="">
+              <h6 className="footer-heading text-uppercase text-white">Contact Us</h6>
+              <p className="contact-info mt-4">Contact us if you need help with anything</p>
+              <p className="contact-info">+01 123-456-7890</p>
+              <div className="mt-5">
+                <ul className="list-inline">
+                  <li className="list-inline-item"><a href="#"><i className="fab facebook footer-social-icon fa-facebook-f"></i></a></li>
+                  <li className="list-inline-item"><a href="#"><i className="fab twitter footer-social-icon fa-twitter"></i></a></li>
+                  <li className="list-inline-item"><a href="#"><i className="fab google footer-social-icon fa-google"></i></a></li>
+                  <li className="list-inline-item"><a href="#"><i className="fab apple footer-social-icon fa-apple"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-    );
-}
+      </div>
+
+      <div className="text-center mt-5">
+        <p className="footer-alt mb-0 f-14">2019 © Anup, All Rights Reserved</p>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;
