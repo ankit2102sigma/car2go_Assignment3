@@ -80,6 +80,12 @@ function CarForm () {
     alert('Please fill in all fields.');
     return;
   }
+  const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+  if (image.size > maxSize) {
+    alert('File size exceeds the maximum limit of 2MB.');
+    event.target.value = null; // Clear the selected file
+    return;
+  }
 
     
   

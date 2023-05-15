@@ -39,8 +39,9 @@ class CarController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['success' => false, 'message' => $validator->errors()], 422);
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
+
 
         $imageName = time() . '.' . $request->image->getClientOriginalExtension();
         $request->image->storeAs('public/images/cars', $imageName);
